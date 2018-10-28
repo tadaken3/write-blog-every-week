@@ -20,12 +20,21 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  created: function(){
+    const baseURL = "https://nifty-colden-0e367f.netlify.com/.netlify/functions"
+    const result = axios.get('/hello', {
+      baseURL: baseURL
+    })
+    this.msg = result
   }
 }
 </script>
