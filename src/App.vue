@@ -2,7 +2,17 @@
   <div id="app">
     <h2>Write Blog Every Week</h2>
     <ul>
-      <li v-for="item in info">{{ item }}</li>
+      <li>
+        <div class="card">
+          <a v-bind="info[4].link">
+            <h3>{{ info[1].articleTitle }}</h3>
+          </a>
+          published at {{ info[2].pubdata }}
+          <p>{{ info[3].summary }}</p>
+          <b>{{ info[0].blogTitle }}</b>
+          
+        </div>
+      </li>
     </ul>
     </div>
 </template>
