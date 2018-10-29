@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <button v-on:click="fetchData">refresh</button>
-  </div>
+    <h2>Write Blog Every Week</h2>
+    <ul>
+      <li v-for="item in info">{{ item }}</li>
+    </ul>
+    </div>
 </template>
 
 <script>
@@ -14,17 +14,15 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+     info: null,
     }
   },
-  methods: {
-    fetchData: function() {
-      console.log('test start')
-      const baseURL = "https://quirky-einstein-a1049a.netlify.com/sample.json" 
-      const result = axios.get(baseURL)
-      console.log(result)
-      this.msg = result.data
-    }
+  beforeCreate: function() {
+    var vm = this
+    const baseURL = "https://quirky-einstein-a1049a.netlify.com/sample.json" 
+    axios.get(baseURL).then(function (response) {
+          vm.info = response.data
+    })
   },
 }
 </script>
