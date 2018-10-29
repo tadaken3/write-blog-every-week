@@ -20,10 +20,8 @@ export default {
   methods: {
     fetchData: function() {
       console.log('test start')
-      const baseURL = "http://localhost:9000" 
-      const result = axios.get('/hello', {
-        baseURL: baseURL
-      })
+      const baseURL = "https://quirky-einstein-a1049a.netlify.com/sample.json" 
+      const result = axios.get(baseURL)
       console.log(result)
       this.msg = result.data
     }
