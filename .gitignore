@@ -1,6 +1,7 @@
 .DS_Store
 dist/*
 !dist/index.html
+!dist/_headers
 node_modules/
 npm-debug.log
 yarn-error.log
