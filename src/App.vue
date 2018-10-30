@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <h2>Write Blog Every Week</h2>
-    <ul>
+    <ul v-for='blog in info'>
       <li>
-        <div class="card">
-          <a v-bind="info[4].link">
-            <h3>{{ info[1].articleTitle }}</h3>
+         <div class="card">
+          <a v-bind="blog[0].link">
+            <h3>{{ blog[0].articleTitle }}</h3>
           </a>
-          published at {{ info[2].pubdata }}
-          <p>{{ info[3].summary }}</p>
-          <b>{{ info[0].blogTitle }}</b>
+          published at {{ blog[0].pubdate }}
+          <p>{{ blog[0].summary }}</p>
+          <b>{{ blog[0].blogTitle }}</b>
           
         </div>
       </li>
