@@ -1,24 +1,26 @@
 <template>
   <div id="app">
     <h2>Write Blog Every Week</h2>
-    <ul v-for='blog in info'>
-      <li>
+    <div class="blogs">
+      <ul v-for="blog in info">
+        <li>
          <div class="card">
-          <a v-bind="blog[0].link">
+          <a v-bind:href="blog[0].link">
             <h3>{{ blog[0].articleTitle }}</h3>
           </a>
-          published at {{ blog[0].pubdate }}
+          <p>最終更新日: {{ blog[0].pubdate | moment }}</p>
           <p>{{ blog[0].summary }}</p>
           <b>{{ blog[0].blogTitle }}</b>
-          
         </div>
-      </li>
-    </ul>
+       </li>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'app',
@@ -27,9 +29,14 @@ export default {
      info: null,
     }
   },
+  filters: {
+      moment: function (date) {
+        return moment(date).format('YYYY/MM/DD');
+      }
+  },
   beforeCreate: function() {
     var vm = this
-    const baseURL = "https://quirky-einstein-a1049a.netlify.com/sample.json" 
+    const baseURL = "https://api-write-blog-every-week.netlify.com/blogs.json" 
     axios.get(baseURL).then(function (response) {
           vm.info = response.data
     })
@@ -47,9 +54,24 @@ export default {
   margin-top: 60px;
 }
 
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 33.3%;
+  
+}
+
+li {
+  margin: 0 10px;
+}
+
 .card {
-  height: 100%;
-  min-width: 600px;
+  height : 300px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
   display: flex;
@@ -61,19 +83,13 @@ export default {
   border-radius: 8px;
 }
 
+
+
 h1, h2 {
   font-weight: normal;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 
 a {
   color: #42b983;
