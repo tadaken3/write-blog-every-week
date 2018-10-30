@@ -47,6 +47,20 @@ export default {
   margin-top: 60px;
 }
 
+.card {
+  height: 100%;
+  min-width: 600px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(238, 238, 238);
+  border-image: initial;
+  border-radius: 8px;
+}
+
 h1, h2 {
   font-weight: normal;
 }
