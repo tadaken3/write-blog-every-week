@@ -2,15 +2,15 @@
   <div id="app">
     <h2>Write Blog Every Week</h2>
     <div class="blogs">
-      <ul v-for="blog in info">
+      <ul v-for="blog in blogs">
         <li>
          <div class="card">
-          <a v-bind:href="blog[0].link">
-            <h3>{{ blog[0].articleTitle }}</h3>
+          <a v-bind:href="blog.link">
+            <h3>{{ blog.articleTitle }}</h3>
           </a>
-          <p>最終更新日: {{ blog[0].pubdate | moment }}</p>
-          <p>{{ blog[0].summary }}</p>
-          <b>{{ blog[0].blogTitle }}</b>
+          <p>最終更新日: {{ blog.pubdate | moment }}</p>
+          <p>{{ blog.summary }}</p>
+          <b>{{ blog.blogTitle }}</b>
         </div>
        </li>
       </ul>
@@ -26,7 +26,7 @@ export default {
   name: 'app',
   data () {
     return {
-     info: null,
+     blogs: null,
     }
   },
   filters: {
@@ -35,10 +35,10 @@ export default {
       }
   },
   beforeCreate: function() {
-    var vm = this
+    var me = this
     const baseURL = "https://api-write-blog-every-week.netlify.com/blogs.json" 
     axios.get(baseURL).then(function (response) {
-          vm.info = response.data
+          me.blogs = response.data
     })
   },
 }
