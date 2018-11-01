@@ -9,7 +9,7 @@
           <a v-bind:href="blog.link" v-bind:key="blog.title">
             <h3>{{ blog.articleTitle }}</h3>
           </a> 
-          <p>最終更新日: {{ blog.pubdate | formatDate }}</p>
+          <p>最終更新日: {{ blog.pubdate | formatDate}}</p>
           <p>経過日数:   {{ blog.pubdate | passDate }}</p>
           <p>{{ blog.summary }}</p>
           <b>{{ blog.blogTitle }}</b>
@@ -22,7 +22,7 @@
 
 <script>
 import axios from 'axios';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import lodash from 'lodash';
 
 export default {
@@ -40,12 +40,12 @@ export default {
   },
   filters: {
       formatDate: function (date) {
-        return moment(date).format('YYYY/MM/DD');
+        return moment(date).tz("Asia/Tokyo").format('YYYY/MM/DD');
       },
       passDate: function(date) {
         var toDate   = moment()
-        var fromDate = moment(date);
-      return toDate.diff(fromDate,'days')
+        var fromDate = moment(date)
+        return Math.round(toDate.diff(fromDate,'days',true))
     },
   },
   beforeCreate: function() {
@@ -102,8 +102,6 @@ li {
 h1, h2 {
   font-weight: normal;
 }
-
-
 
 a {
   color: #42b983;
