@@ -5,7 +5,7 @@
     <div class="blogs">
       <ul v-for="blog in sorted">
         <li>
-         <div class="card">
+         <div class="card" v-bind:class="blog.pubdate | passDate"> 
           <a v-bind:href="blog.link" v-bind:key="blog.title">
             <h3>{{ blog.articleTitle }}</h3>
           </a> 
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
      blogs: null,
-     order: false
+     order: false,
     }
   },
   computed: {
@@ -43,10 +43,25 @@ export default {
         return moment(date).tz("Asia/Tokyo").format('YYYY/MM/DD');
       },
       passDate: function(date) {
-        var toDate   = moment()
-        var fromDate = moment(date)
+        let toDate   = moment()
+        let fromDate = moment(date)
         return Math.round(toDate.diff(fromDate,'days',true))
-    },
+      },
+      updateStatus: function(date) {
+        if(datediff > 14){
+          status = 'no-updat';
+        }
+        else if (datediff > 10){
+          stasus = 'critical'
+        }
+        else if (datediff > 7){
+          stasus = 'warring'
+        }
+        else {
+          status = 'safe'
+        }
+        return status 
+      },
   },
   beforeCreate: function() {
     var me = this
@@ -71,6 +86,18 @@ export default {
 .blogs {
   display: flex;
   flex-wrap: wrap;
+}
+
+.warning {
+  background-color: yellow;
+}
+
+.critical {
+  background-color: red;
+}
+
+.no-update {
+  background-color: gray;
 }
 
 ul {
