@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <h2>Write Blog Every Week</h2>
+    <button v-on:click="order=!order">昇順/降順</button>
     <div class="blogs">
-      <ul v-for="blog in blogs">
+      <ul v-for="blog in sorted">
         <li>
          <div class="card">
-          <a v-bind:href="blog.link">
+          <a v-bind:href="blog.link" v-bind:key="blog.title">
             <h3>{{ blog.articleTitle }}</h3>
-          </a>
-          <p>最終更新日: {{ blog.pubdate | moment }}</p>
+          </a> 
+          <p>最終更新日: {{ blog.pubdate | formatDate }}</p>
+          <p>経過日数:   {{ blog.pubdate | passDate }}</p>
           <p>{{ blog.summary }}</p>
           <b>{{ blog.blogTitle }}</b>
         </div>
@@ -21,18 +23,30 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
+import lodash from 'lodash';
 
 export default {
   name: 'app',
   data () {
     return {
      blogs: null,
+     order: true
     }
   },
+  computed: {
+    sorted: function() {
+      return _.orderBy(this.blogs, 'pubdate', this.order ? 'desc': 'asc')
+    },
+  },
   filters: {
-      moment: function (date) {
+      formatDate: function (date) {
         return moment(date).format('YYYY/MM/DD');
-      }
+      },
+      passDate: function(date) {
+        var toDate   = moment()
+        var fromDate = moment(date);
+      return toDate.diff(fromDate,'days')
+    },
   },
   beforeCreate: function() {
     var me = this
