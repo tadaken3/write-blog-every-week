@@ -30,7 +30,7 @@ export default {
   data () {
     return {
      blogs: null,
-     order: true
+     order: false
     }
   },
   computed: {
