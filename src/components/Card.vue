@@ -1,11 +1,11 @@
 <template>
-  <div class="card">
-    <a v-bind:href="blog.link" v-bind:key="blog.title">
-        <h3>{{ blog.articleTitle }}</h3>
+  <div class="card" v-bind:class="updateStatus">
+    <a v-bind:href="blog.link">
+      <h3>{{ blog.articleTitle }}</h3>
     </a> 
     <p>最終更新日: {{ blog.pubdate | formatDate}}</p>
-    <p>経過日数:   {{ blog.pubdate | passDate }}</p>
-    <b>{{ blog.blogTitle }}</b>
+    <p>経過日数:   {{ passDate }}</p>
+    <p>{{ blog.blogTitle }}</p>
  </div>
 </template>
 
@@ -15,40 +15,50 @@ import moment from 'moment-timezone';
 export default {
   name: 'card',
   data () {
-    return {
-     status: 'safe',
-    }
+    return {}
   },
   props: ['blog'],
   filters: {
       formatDate: function (date) {
         return moment(date).tz("Asia/Tokyo").format('YYYY/MM/DD');
       },
-      passDate: function(date) {
+  },
+  computed: {
+    passDate: function() {
         let toDate   = moment()
-        let fromDate = moment(date)
+        let fromDate = moment(this.blog.pubdate)
         return Math.round(toDate.diff(fromDate,'days',true))
-      },
-      updateStatus: function(date) {
-        if(datediff > 14){
-          status = 'no-updat';
-        }
-        else if (datediff > 10){
-          stasus = 'critical'
-        }
-        else if (datediff > 7){
-          stasus = 'warring'
-        }
-        else {
-          status = 'safe'
-        }
-        return status 
-      },
+    },
+    updateStatus: function() {
+      let diff = this.passDate
+      let status;
+
+      if( diff<=7) { status = 'safe' }
+        else if (diff<=9){ status = 'warning' }
+        else if (diff<=13){ status = 'critical' }
+      else { status = 'no-update' }
+      
+      return status 
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.card {
+  width: 33.3%;
+  height : 300px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(238, 238, 238);
+  border-image: initial;
+  border-radius: 8px;
+}
+
 .warning {
   background-color: yellow;
 }
@@ -61,16 +71,5 @@ export default {
   background-color: gray;
 }
 
-.card {
-  height : 300px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
-  display: flex;
-  flex-direction: column;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(238, 238, 238);
-  border-image: initial;
-  border-radius: 8px;
-}
+
 </style>

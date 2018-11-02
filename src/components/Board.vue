@@ -1,9 +1,11 @@
 <template>
   <div id="board">
-    <h2>Write Blog Every Week</h2>
-    <button v-on:click="order=!order">昇順/降順</button>
+    <div class='nav'>
+      <h2>Write Blog Every Week</h2>
+      <button v-on:click="order=!order">昇順/降順</button>
+    </div>
     <div class="container">
-      <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.title"></card> 
+      <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </div>
   </div>
 </template>
@@ -15,7 +17,7 @@ import Card from './Card.vue';
 
 
 export default {
-  name: 'app',
+  name: 'Board',
   data () {
     return {
      blogs: null,
@@ -40,18 +42,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+#board{
+  width: 100%;
 
-.blogs {
+}
+
+.container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-h1, h2 {
-  font-weight: normal;
-}
-
-a {
-  color: #42b983;
-}
 </style>
