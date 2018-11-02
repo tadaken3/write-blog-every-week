@@ -1,6 +1,6 @@
 <template>
   <div id="board">
-    <div class='nav'>
+    <div class="nav">
       <h2>Write Blog Every Week</h2>
       <button v-on:click="order=!order">昇順/降順</button>
     </div>
@@ -43,15 +43,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#board{
+#board {
   width: 100%;
-
+  height: 100%;
+}
+.nav {
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .container {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
 }
 
 </style>
