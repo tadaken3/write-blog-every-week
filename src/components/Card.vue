@@ -54,20 +54,20 @@ export default {
   border-width: 1px;
   border-style: solid;
   border-color: rgb(238, 238, 238);
-  border-radius: 8px;
+  border-radius: 6px;
   text-align: center;
 }
 
 .warning {
-  background-color: yellow;
+  background-color: #FFC107;
 }
 
 .critical {
-  background-color: red;
+  background-color: #FF5622;
 }
 
 .no-update {
-  background-color: gray;
+  background-color: #2D3E50;
 }
 
 
