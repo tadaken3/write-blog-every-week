@@ -50,6 +50,7 @@ export default {
   width: 30%;
   height : 250px;
   margin: 13px;
+  min-width: 400px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
   border-width: 1px;
   border-style: solid;
