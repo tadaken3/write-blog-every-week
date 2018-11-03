@@ -1,11 +1,12 @@
 <template>
   <div class="card" v-bind:class="updateStatus">
-    <a v-bind:href="blog.link">
-      <h3>{{ blog.articleTitle }}</h3>
-    </a> 
-    <p>最終更新日: {{ blog.pubdate | formatDate}}</p>
-    <p>経過日数:   {{ passDate }}</p>
-    <p>{{ blog.blogTitle }}</p>
+      <p>{{ blog.blogTitle }}</p>
+      <a v-bind:href="blog.link">
+        <h3>{{ blog.articleTitle }}</h3>
+      </a> 
+    <p>{{ blog.pubdate | formatDate}}</p>
+    <p>経過日数:{{ passDate }}</p>
+    
  </div>
 </template>
 
@@ -47,8 +48,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   width: 30%;
-  height : 300px;
-  background-color: white;
+  height : 250px;
   margin: 13px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
   border-width: 1px;
@@ -57,22 +57,36 @@ export default {
   border-radius: 8px;
   text-align: center;
   transition: all 0.3s;
+  background-size: cover;
 }
 
 .card:hover{
  transform: translate(0px,-5px);
 }
 
+
+.card a {
+  text-decoration: none;
+}
+
+.safe {
+  background-color: #F6F6F6;
+  background-image: url("../assets/safe.png")
+}
+
 .warning {
   background-color: #FFC107;
+  background-image: url("../assets/warning.png")
 }
 
 .critical {
   background-color: #FF5622;
+  background-image: url("../assets/critical.png")
 }
 
 .no-update {
   background-color: #2D3E50;
+  background-image: url("../assets/no-update.png")
 }
 
 
