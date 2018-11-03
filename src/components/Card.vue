@@ -54,8 +54,13 @@ export default {
   border-width: 1px;
   border-style: solid;
   border-color: rgb(238, 238, 238);
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
+  transition: all 0.3s;
+}
+
+.card:hover{
+ transform: translate(0px,-5px);
 }
 
 .warning {
