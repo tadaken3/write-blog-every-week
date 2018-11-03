@@ -1,7 +1,8 @@
 <template>
   <div id="board">
     <div class="nav">
-      <h2>Write Blog Every Week</h2>
+      <h1>We love Blog</h1>
+      <h2>Let's write life! / ブログに人生を残そう!</h2>
       <button v-on:click="order=!order">昇順/降順</button>
     </div>
     <div class="container">
