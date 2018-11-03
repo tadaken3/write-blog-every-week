@@ -5,9 +5,9 @@
       <h2>Let's write life! / ブログに人生を残そう!</h2>
       <button v-on:click="order=!order">昇順/降順</button>
     </div>
-    <div class="container">
+   <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -61,4 +61,24 @@ export default {
   margin: auto;
 }
 
+
+.cards-enter-active, .demo-leave-active {
+  transition: transform .5s, opacity .5s;
+}
+.cards-move:not(.demo-leave-active) {
+  transition: transform .5s;
+}
+/* 表示される時は上からスライド */
+.cards-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+/* 消える時は縮小される */
+.cards-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.cards-leave-active {
+  position: absolute;
+}
 </style>
