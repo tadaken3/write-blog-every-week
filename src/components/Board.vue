@@ -3,8 +3,10 @@
     <div class="nav">
       <h1>We love Blog</h1>
       <h2>Let's write life! / ブログに人生を残そう!</h2>
+        <p>登録ブログ数: {{ sorted.length }}件</p>
       <button v-on:click="order=!order">昇順/降順</button>
     </div>
+ 
    <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </transition-group>
