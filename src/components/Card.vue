@@ -35,7 +35,7 @@ export default {
       let status;
 
       if( diff<=7) { status = 'safe' }
-        else if (diff<=9){ status = 'warning' }
+        else if (diff<=9) { status = 'warning' }
         else if (diff<=13){ status = 'critical' }
       else { status = 'no-update' }
       
@@ -47,10 +47,9 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  width: 30%;
+  width: 400px;
   height : 250px;
   margin: 13px;
-  min-width: 400px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;
   border-width: 1px;
   border-style: solid;
