@@ -1,12 +1,11 @@
 <template>
   <div class="card" v-bind:class="updateStatus">
-      <h3 class="blogTitle">{{ blog.blogTitle }}</h3>
       <a v-bind:href="blog.link">
-        <p class="articleTitle">{{ blog.articleTitle | adjustText }}</p>
-      </a> 
+      <h3 class="blogTitle">{{ blog.blogTitle }}</h3>
+        <p class="articleTitle">{{ blog.articleTitle | adjustText }}</p> 
     <p class="pubdate">{{ blog.pubdate | formatDate}}</p>
     <p class="passdate">経過日数:{{ passDate }}</p>
-    
+    </a>
  </div>
 </template>
 
@@ -68,6 +67,7 @@ export default {
   position: relative;
   a {
     text-decoration: none;
+    display: block;
   }
 }
 
