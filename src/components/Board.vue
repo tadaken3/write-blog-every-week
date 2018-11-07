@@ -4,12 +4,13 @@
       <h1>We love Blog</h1>
       <h2>Let's write life! / ブログに人生を残そう!</h2>
         <p>登録ブログ数: {{ sorted.length }}件</p>
-      <button v-on:click="order=!order">昇順/降順</button>
+      <button class="sort-button" v-on:click="order=!order">昇順/降順</button>
     </div>
  
    <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </transition-group>
+    <div class="credit"><a href="https://twitter.com/tadaken3">created by @tadaken3</a></div>
   </div>
 </template>
 
@@ -63,6 +64,20 @@ export default {
   margin: auto;
 }
 
+.sort-button{
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #42b983;
+  background: #ECECEC;
+  transition: .4s;
+}
+.sort-button:hover {/*ボタンを押したとき*/
+  background: #42b983;
+  color: white;
+}
 
 .cards-enter-active, .demo-leave-active {
   transition: transform .5s, opacity .5s;
@@ -83,4 +98,10 @@ export default {
 .cards-leave-active {
   position: absolute;
 }
+
+.credit {
+ margin: 10px;
+ text-align: center;
+}
+
 </style>
