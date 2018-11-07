@@ -6,6 +6,7 @@
 
 <script>
 import Board from './components/Board.vue';
+import 'normalize.css'
 
 export default {
   name: 'app',

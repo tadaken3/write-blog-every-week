@@ -2,7 +2,7 @@
   <div class="card" v-bind:class="updateStatus">
       <h3 class="blogTitle">{{ blog.blogTitle }}</h3>
       <a v-bind:href="blog.link">
-        <p class="articleTitle">{{ blog.articleTitle }}</p>
+        <p class="articleTitle">{{ blog.articleTitle | adjustText }}</p>
       </a> 
     <p class="pubdate">{{ blog.pubdate | formatDate}}</p>
     <p class="passdate">経過日数:{{ passDate }}</p>
@@ -23,6 +23,11 @@ export default {
       formatDate: function (date) {
         return moment(date).tz("Asia/Tokyo").format('YYYY/MM/DD');
       },
+      adjustText: function (text) {
+        let text_len = text.length;
+        if (text_len>=35) { return text.slice(0,34) + '...'}
+        else { return text }
+      },
   },
   computed: {
     passDate: function() {
@@ -34,7 +39,7 @@ export default {
       let diff = this.passDate
       let status;
 
-      if( diff<=7) { status = 'safe' }
+      if(diff<=7) { status = 'safe' }
         else if (diff<=9) { status = 'warning' }
         else if (diff<=13){ status = 'critical' }
       else { status = 'no-update' }
@@ -46,6 +51,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+//共通の設定
 .card {
   width: 400px;
   height : 250px;
@@ -59,17 +66,22 @@ export default {
   transition: all 0.3s;
   background-size: cover;
   position: relative;
+  a {
+    text-decoration: none;
+  }
+}
+
+.card:hover{
+ transform: translate(0px,-5px);
 }
 
 .passdate {
   position: absolute;
   bottom: 10px;
-  left: 20px;
+  left: 22px;
   font-size: 13px;
-  color: #2c2c2f;
-  background: #cde4ff;/*背景色*/
   border-radius: 7px;
-  padding: 3px 14px;
+  padding: 3px 18px;
 }
 
 .pubdate {
@@ -77,7 +89,6 @@ export default {
   bottom: 13px;
   left: 130px;
   font-size: 13px;
-  color: #2c2c2f;
 }
 
 .blogTitle {
@@ -91,44 +102,90 @@ export default {
 }
 
 .articleTitle {
+  width: 80%;
+  height: 80%;
   position: absolute;
   padding: 0 20px;
-  font-size: 130%;
+  font-size: 24px;
   top: 60px;
   left: 6px;
   text-align: left;
   font-weight: 700;
 }
 
-
-.card:hover{
- transform: translate(0px,-5px);
-}
-
-
-.card a {
-  text-decoration: none;
-}
-
+//状態によって変化
 .safe {
   background-color: #F6F6F6;
-  background-image: url("../assets/safe.png")
+  background-image: url("../assets/safe.png");
+  .passdate {
+    color: #F6F6F6;
+    background: #4A4A4A;
+  }
+  .blogTitle {
+    color: #9B9B9B;
+  }
+  .articleTitle {
+    color: #4A4A4A;
+  }
+  .pubdate {
+    color: #9B9B9B;
+  }
 }
 
 .warning {
   background-color: #FFC107;
-  background-image: url("../assets/warning.png")
+  background-image: url("../assets/warning.png");
+  .passdate {
+    color: #FFC107;
+    background: #FFFFFF;
+  }
+  .blogTitle {
+    color: #9B9B9B;
+  }
+  .articleTitle {
+    color: #FCE9B0;
+  }
+  .pubdate {
+    color: #FFFFFF;
+  }
 }
 
 .critical {
   background-color: #FF5622;
-  background-image: url("../assets/critical.png")
+  background-image: url("../assets/critical.png");
+  .passdate {
+    color: #FF5622;
+    background: #FFFFFF;
+  }
+  .blogTitle {
+    color: #F7DADA;
+  }
+  .articleTitle {
+    color: #FCE9B0;
+  }
+  .pubdate {
+    color: #FFFFFF;
+  }
 }
 
 .no-update {
   background-color: #2D3E50;
-  background-image: url("../assets/no-update.png")
+  background-image: url("../assets/no-update.png");
+  .passdate {
+    color: #2D3E50;
+    background: #FFFFFF;
+  }
+  .blogTitle {
+    color: #7B90A7;
+  }
+  .articleTitle {
+    color: #FCE9B0;
+  }
+  .pubdate {
+    color: #FFFFFF;
+  }
 }
+
 
 
 </style>
