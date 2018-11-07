@@ -1,11 +1,11 @@
 <template>
   <div class="card" v-bind:class="updateStatus">
-      <p>{{ blog.blogTitle }}</p>
+      <h3 class="blogTitle">{{ blog.blogTitle }}</h3>
       <a v-bind:href="blog.link">
-        <h3>{{ blog.articleTitle }}</h3>
+        <p class="articleTitle">{{ blog.articleTitle }}</p>
       </a> 
-    <p>{{ blog.pubdate | formatDate}}</p>
-    <p>経過日数:{{ passDate }}</p>
+    <p class="pubdate">{{ blog.pubdate | formatDate}}</p>
+    <p class="passdate">経過日数:{{ passDate }}</p>
     
  </div>
 </template>
@@ -58,7 +58,48 @@ export default {
   text-align: center;
   transition: all 0.3s;
   background-size: cover;
+  position: relative;
 }
+
+.passdate {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 13px;
+  color: #2c2c2f;
+  background: #cde4ff;/*背景色*/
+  border-radius: 7px;
+  padding: 3px 14px;
+}
+
+.pubdate {
+  position: absolute;
+  bottom: 13px;
+  left: 130px;
+  font-size: 13px;
+  color: #2c2c2f;
+}
+
+.blogTitle {
+  position: absolute;
+  padding: 0 20px;
+  top: 13px;
+  left: 6px;
+  color: #2c2c2f;
+  font-size: 18px;
+  text-align: left;
+}
+
+.articleTitle {
+  position: absolute;
+  padding: 0 20px;
+  font-size: 130%;
+  top: 60px;
+  left: 6px;
+  text-align: left;
+  font-weight: 700;
+}
+
 
 .card:hover{
  transform: translate(0px,-5px);
