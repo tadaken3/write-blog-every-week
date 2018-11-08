@@ -140,10 +140,10 @@ export default {
     background: #FFFFFF;
   }
   .blogTitle {
-    color: #9B9B9B;
+    color: #FCE9B0;
   }
   .articleTitle {
-    color: #FCE9B0;
+    color: #FFFFFF;
   }
   .pubdate {
     color: #FFFFFF;
