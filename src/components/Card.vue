@@ -38,7 +38,8 @@ export default {
       let diff = this.passDate
       let status;
 
-      if(diff<=7) { status = 'safe' }
+      if(diff<1) { status = 'safe blinking' }
+      　else if (diff<=7) { status = 'safe' }
         else if (diff<=9) { status = 'warning' }
         else if (diff<=13){ status = 'critical' }
       else { status = 'no-update' }
@@ -186,6 +187,75 @@ export default {
   }
 }
 
+.card:before{
+  content: "";
+  position: absolute;
+  background-color:#00ff00;
+  z-index: 1;
+  border: 1px solid #000;
+}
 
+$color: #2194E0;
+
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+
+.blinking:before {
+    content: "";
+    background: white;
+    opacity: .3;
+    height: 100%;
+    width: 10em;
+    display: block;
+    position: absolute;
+    border:none;
+    top: 0;
+    left: 0;
+    transform: skewX(-30deg) translateX(0);
+    transition: none;
+    -webkit-animation:blink 1.5s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+	0% {
+		left: -30%;
+	}
+	20% {
+		left: 120%;
+	}
+	100% {
+		left: 120%;
+	}
+}
+@-webkit-keyframes blink {
+	0% {
+		left: -30%;
+	}
+	20% {
+		left: 120%;
+	}
+	100% {
+		left: 120%;
+	}
+}
+@-moz-keyframes blink {
+	0% {
+		left: -30%;
+	}
+	20% {
+		left: 120%;
+	}
+	100% {
+		left: 120%;
+	}
+}
 
 </style>
