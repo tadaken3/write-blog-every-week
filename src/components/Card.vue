@@ -161,7 +161,7 @@ export default {
     color: #F7DADA;
   }
   .articleTitle {
-    color: #FCE9B0;
+    color: #FFFFFF;
   }
   .pubdate {
     color: #FFFFFF;
@@ -179,7 +179,7 @@ export default {
     color: #7B90A7;
   }
   .articleTitle {
-    color: #FCE9B0;
+    color: #FFFFFF;
   }
   .pubdate {
     color: #FFFFFF;
