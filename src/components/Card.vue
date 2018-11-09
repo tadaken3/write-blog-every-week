@@ -200,7 +200,7 @@ export default {
     text-align: center;
     font-size: 17px;
     color: white;
-    background: #ff785b;
+    background: #0770FF;
 }
 
 .new-ribbon:after{
@@ -210,8 +210,8 @@ export default {
     top: 100%;
     height: 0;
     width: 0;
-    border-left: 20px solid #ff785b;
-    border-right: 20px solid #ff785b;
+    border-left: 20px solid #0770FF;
+    border-right: 20px solid #0770FF;
     border-bottom: 10px solid transparent;
 }
 

@@ -1,8 +1,7 @@
 <template>
   <div id="board">
     <div class="nav">
-      <h1>We love Blog</h1>
-      <h2>Let's write life! / ブログに人生を残そう!</h2>
+      <h1>We Love Blog</h1>
         <p>登録ブログ数: {{ sorted.length }}件</p>
       <button class="sort-button" v-on:click="order=!order">昇順/降順</button>
     </div>
@@ -57,6 +56,15 @@ export default {
   text-align: center;
 }
 
+.nav h1 {
+  font-size: 64px;
+  font-weight: 800;
+  color:#0770FF;
+  background: linear-gradient(45deg, #0770FF 0%, #07F5FF 100%);
+  -webkit-background-clip: text;//テキストでくり抜く
+  -webkit-text-fill-color: transparent;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -70,12 +78,12 @@ export default {
   font-weight: bold;
   padding: 0.25em 0.5em;
   text-decoration: none;
-  color: #42b983;
+  color: #0770FF;
   background: #ECECEC;
   transition: .4s;
 }
 .sort-button:hover {/*ボタンを押したとき*/
-  background: #42b983;
+  background: #0770FF;
   color: white;
 }
 

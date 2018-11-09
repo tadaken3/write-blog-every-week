@@ -35,6 +35,6 @@ h1, h2 {
 }
 
 a {
-  color: #42b983;
+  color: #0770FF;
 }
 </style>
