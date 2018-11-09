@@ -1,5 +1,6 @@
 <template>
   <div class="card" v-bind:class="updateStatus">
+    <span v-if="updateStatus=='updated'" class="new-ribbon">new</span>
       <a v-bind:href="blog.link">
       <h3 class="blogTitle">{{ blog.blogTitle }}</h3>
         <p class="articleTitle">{{ blog.articleTitle | adjustText }}</p> 
@@ -38,7 +39,7 @@ export default {
       let diff = this.passDate
       let status;
 
-      if(diff<1) { status = 'safe blinking' }
+      if(diff<1) { status = 'updated'}
       　else if (diff<=7) { status = 'safe' }
         else if (diff<=9) { status = 'warning' }
         else if (diff<=13){ status = 'critical' }
@@ -94,7 +95,7 @@ export default {
 
 .blogTitle {
   position: absolute;
-  padding: 0 20px;
+  padding: 0 55px 0 20px;
   top: 13px;
   left: 6px;
   color: #2c2c2f;
@@ -115,7 +116,7 @@ export default {
 }
 
 //状態によって変化
-.safe {
+.safe, .updated {
   background-color: #F6F6F6;
   background-image: url("../assets/safe.png");
   .passdate {
@@ -187,75 +188,31 @@ export default {
   }
 }
 
-.card:before{
-  content: "";
-  position: absolute;
-  background-color:#00ff00;
-  z-index: 1;
-  border: 1px solid #000;
-}
-
-$color: #2194E0;
-
-@keyframes sheen {
-  0% {
-    transform: skewY(-45deg) translateX(0);
-  }
-  100% {
-    transform: skewY(-45deg) translateX(12.5em);
-  }
-}
-
-.blinking:before {
-    content: "";
-    background: white;
-    opacity: .3;
-    height: 100%;
-    width: 10em;
-    display: block;
+.new-ribbon {    
+    display: inline-block;
     position: absolute;
-    border:none;
     top: 0;
-    left: 0;
-    transform: skewX(-30deg) translateX(0);
-    transition: none;
-    -webkit-animation:blink 1.5s ease-in-out infinite alternate;
-    -moz-animation:blink 1.5s ease-in-out infinite alternate;
-    animation:blink 1.5s ease-in-out infinite alternate;
+    right: 20px;
+    margin: 0;
+    padding: 10px 0;
+    z-index: 2;
+    width: 40px;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    background: #ff785b;
 }
 
-@keyframes blink {
-	0% {
-		left: -30%;
-	}
-	20% {
-		left: 120%;
-	}
-	100% {
-		left: 120%;
-	}
-}
-@-webkit-keyframes blink {
-	0% {
-		left: -30%;
-	}
-	20% {
-		left: 120%;
-	}
-	100% {
-		left: 120%;
-	}
-}
-@-moz-keyframes blink {
-	0% {
-		left: -30%;
-	}
-	20% {
-		left: 120%;
-	}
-	100% {
-		left: 120%;
-	}
+.new-ribbon:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    height: 0;
+    width: 0;
+    border-left: 20px solid #ff785b;
+    border-right: 20px solid #ff785b;
+    border-bottom: 10px solid transparent;
 }
 
 </style>
