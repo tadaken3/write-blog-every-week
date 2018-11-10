@@ -1,10 +1,16 @@
 <template>
   <div id="board">
     <div class="nav">
-      <h1>We Love Blog</h1>
+     <h1>We Love Blog</h1>
         <p>登録ブログ数: {{ sorted.length }}件</p>
-      <button class="sort-button" v-on:click="order=!order">昇順/降順</button>
+      <div class="sample2Area" id="makeImg">
+        <input type="checkbox" id="sample2check" v-model="order">
+         <label for="sample2check">
+        <div id="sample2box"></div>
+       </label>
     </div>
+
+      </div>
  
    <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
@@ -17,7 +23,6 @@
 import axios from 'axios';
 import lodash from 'lodash';
 import Card from './Card.vue';
-
 
 export default {
   name: 'Board',
@@ -110,6 +115,43 @@ export default {
 .credit {
  margin: 10px;
  text-align: center;
+}
+
+/* === ボタンを表示するエリア ============================== */
+.sample2Area {
+  margin         : auto;                /* 中央寄せ           */
+  width          : 200px;               /* ボタンの横幅       */
+}
+ 
+ /* === チェックボックス ==================================== */
+.sample2Area input[type="checkbox"] {
+  display        : none;            /* チェックボックス非表示 */
+}
+ 
+ /* === チェックボックスのラベル（標準） ==================== */
+.sample2Area label {
+  display        : block;               /* ボックス要素に変更 */
+  box-sizing     : border-box;          /* 枠線を含んだサイズ */
+  text-align     : left;                /* 文字位置は中央     */
+  border         : 2px solid #0770FF;   /* 枠線               */
+  border-radius  : 8px;                 /* 角丸               */
+  line-height    : 1;                   /* 1行の高さ          */
+  height         : 30px;                /* ボタンの高さ       */
+}
+ 
+ /* === 移動BOX（標準） ===================================== */
+.sample2Area #sample2box {
+  display        :inline-block;
+  height         : 26px;                /* ボタンの高さ       */
+  width          : 50%;                 /* ボタンの高さ       */
+  background     : #0770FF;                /* 背景色             */
+  transition     : .3s;                 /* ゆっくり変化       */
+}
+ 
+ /* === ON側のチェックボックスの移動BOX（ONのとき） ========= */
+.sample2Area #sample2check:checked + label #sample2box {
+  transform      : translateX(100%);    /* BOXを右に移動      */
+  background     : #0770FF;             /* 背景色             */
 }
 
 </style>
