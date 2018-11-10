@@ -4,10 +4,10 @@
       <div class="nav">
         <p>登録ブログ数: {{ sorted.length }}件</p>
         <div class="switch" id="makeImg">
-          <input type="radio" name="descBtn" id="descBtn" checked="" value="desc" v-model="order">
-          <label for="descBtn">降順</label>
-          <input type="radio" name="ascBtn" id="ascBtn" value="asc" v-model="order">
+          <input type="radio" name="ascBtn" id="ascBtn" checked="" value="asc" v-model="order">
           <label for="ascBtn">昇順</label>
+          <input type="radio" name="descBtn" id="descBtn" value="desc" v-model="order">
+          <label for="descBtn">降順</label>
       </div>
     </div>
    <transition-group name="cards" class="container" appear>
@@ -27,12 +27,12 @@ export default {
   data () {
     return {
      blogs: null,
-     order: 'desc',
+     order: 'asc',
     }
   },
   computed: {
     sorted: function() {
-      return _.orderBy(this.blogs, 'pubdate', this.order === "desc" ? 'asc': 'desc')
+      return _.orderBy(this.blogs, 'pubdate', this.order)
     },
   },
   beforeCreate: function() {
@@ -136,7 +136,7 @@ export default {
 }
  
  /* === ON側のラジオボタンのラベル（標準） ================== */
-.switch #descBtn + label {
+.switch #ascBtn + label {
   right          : 50%;                 /* 右端を中央に変更   */
   border-radius  : 6px 0 0 6px;         /* 角丸(左側の上下)   */
   background     : #FFF;                /* 背景               */
@@ -145,14 +145,14 @@ export default {
 }
  
  /* === ON側のラジオボタンのラベル（ONのとき） ============== */
-.switch #descBtn:checked +label {
+.switch #ascBtn:checked +label {
                                         /* 背景グラデーション */
   background     : #0770FF;
   color          : #fff;                /* 文字色             */
 }
  
  /* === OFF側のラジオボタンのラベル（標準） ================ */
-.switch #ascBtn + label {
+.switch #descBtn + label {
   left           : 50%;                 /* 左端を中央に変更   */
   border-radius  : 0 6px 6px 0;         /* 角丸(右側の上下)   */
   background     : #FFF;                /* 背景               */
@@ -161,7 +161,7 @@ export default {
 }
  
  /* === OFF側のラジオボタンのラベル（OFFのとき） ============= */
-.switch #ascBtn:checked +label {
+.switch #descBtn:checked +label {
                                         /* 背景グラデーション */
   background     : #0770FF;
   color          : #fff;                /* 文字色             */
