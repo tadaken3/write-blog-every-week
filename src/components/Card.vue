@@ -33,7 +33,7 @@ export default {
     passDate: function() {
         let toDate   = moment()
         let fromDate = moment(this.blog.pubdate)
-        return Math.round(toDate.diff(fromDate,'days',true))
+        return Math.floor(toDate.diff(fromDate,'days',true))
     },
     updateStatus: function() {
       let diff = this.passDate
