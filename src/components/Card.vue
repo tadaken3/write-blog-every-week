@@ -82,14 +82,14 @@ export default {
   bottom: 10px;
   left: 22px;
   font-size: 13px;
-  border-radius: 8px;
-  padding: 3px 18px;
+  border-radius: 6px;
+  padding: 3px 16px;
 }
 
 .pubdate {
   position: absolute;
   bottom: 13px;
-  left: 130px;
+  left: 135px;
   font-size: 13px;
 }
 

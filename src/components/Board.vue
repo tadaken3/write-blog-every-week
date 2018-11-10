@@ -1,7 +1,9 @@
 <template>
   <div id="board">
+    <transition name="logo" appear>
      <h1 class="logo">We Love Blog</h1>
-      <div class="nav">
+     </transition>
+    <div class="nav">
         <p>登録ブログ数: {{ sorted.length }}件</p>
         <div class="switch" id="makeImg">
           <input type="radio" name="ascBtn" id="ascBtn" checked="" value="asc" v-model="order">
@@ -10,7 +12,7 @@
           <label for="descBtn">降順</label>
       </div>
     </div>
-   <transition-group name="cards" class="container" appear>
+    <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </transition-group>
     <div class="credit"><a href="https://twitter.com/tadaken3">created by @tadaken3</a></div>
@@ -53,16 +55,6 @@ export default {
   width: 100%;
   height: 100%;
 }
-.nav {
-  width: 100%;
-  height: 100px;
-  position: relative;
-  text-align: right;
-}
-
-.nav p {
-  text-align: center;
-}
 
 .logo {
   text-align: center;
@@ -74,6 +66,28 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 
+//ロゴのフェードイン
+//ちょっとゆっくりめに
+.logo-enter-active {
+  transition: all 3s;
+}
+.logo-enter {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.nav {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  text-align: right;
+}
+
+.nav p {
+  text-align: center;
+}
+
+//カードの中身
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -82,18 +96,18 @@ export default {
 }
 
 
-.cards-enter-active, .demo-leave-active {
-  transition: transform .5s, opacity .5s;
+.cards-enter-active, .cards-leave-active {
+  transition: transform 2s, opacity 2s;
 }
-.cards-move:not(.demo-leave-active) {
+.cards-move:not(.cards-leave-active) {
   transition: transform .5s;
 }
-/* 表示される時は上からスライド */
+
 .cards-enter {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(50px);
 }
-/* 消える時は縮小される */
+
 .cards-leave-to {
   opacity: 0;
   transform: scale(0.5);
