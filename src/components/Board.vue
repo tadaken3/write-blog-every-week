@@ -1,17 +1,15 @@
 <template>
   <div id="board">
-    <div class="nav">
-     <h1>We Love Blog</h1>
+     <h1 class="logo">We Love Blog</h1>
+      <div class="nav">
         <p>登録ブログ数: {{ sorted.length }}件</p>
-      <div class="sample2Area" id="makeImg">
-        <input type="checkbox" id="sample2check" v-model="order">
-         <label for="sample2check">
-        <div id="sample2box"></div>
-       </label>
-    </div>
-
+        <div class="switch" id="makeImg">
+          <input type="radio" name="descBtn" id="descBtn" checked="" value="desc" v-model="order">
+          <label for="descBtn">降順</label>
+          <input type="radio" name="ascBtn" id="ascBtn" value="asc" v-model="order">
+          <label for="ascBtn">昇順</label>
       </div>
- 
+    </div>
    <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </transition-group>
@@ -29,12 +27,12 @@ export default {
   data () {
     return {
      blogs: null,
-     order: false,
+     order: 'desc',
     }
   },
   computed: {
     sorted: function() {
-      return _.orderBy(this.blogs, 'pubdate', this.order ? 'desc': 'asc')
+      return _.orderBy(this.blogs, 'pubdate', this.order === "desc" ? 'asc': 'desc')
     },
   },
   beforeCreate: function() {
@@ -57,11 +55,17 @@ export default {
 }
 .nav {
   width: 100%;
-  height: 100%;
+  height: 100px;
+  position: relative;
+  text-align: right;
+}
+
+.nav p {
   text-align: center;
 }
 
-.nav h1 {
+.logo {
+  text-align: center;
   font-size: 64px;
   font-weight: 800;
   color:#0770FF;
@@ -77,20 +81,6 @@ export default {
   margin: auto;
 }
 
-.sort-button{
-  position: relative;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  color: #0770FF;
-  background: #ECECEC;
-  transition: .4s;
-}
-.sort-button:hover {/*ボタンを押したとき*/
-  background: #0770FF;
-  color: white;
-}
 
 .cards-enter-active, .demo-leave-active {
   transition: transform .5s, opacity .5s;
@@ -118,40 +108,63 @@ export default {
 }
 
 /* === ボタンを表示するエリア ============================== */
-.sample2Area {
-  margin         : auto;                /* 中央寄せ           */
-  width          : 200px;               /* ボタンの横幅       */
+.switch {
+  position       : relative;            /* 親要素が基点       */
+  width          : 300px;               /* ボタンの横幅       */
+  height         : 30px;                /* ボタンの高さ       */
+  margin: auto;
 }
  
- /* === チェックボックス ==================================== */
-.sample2Area input[type="checkbox"] {
+ /* === ラジオボタン ======================================== */
+.switch input[type="radio"] {
   display        : none;            /* チェックボックス非表示 */
 }
  
- /* === チェックボックスのラベル（標準） ==================== */
-.sample2Area label {
+ /* === ラジオボタンのラベル（標準） ======================== */
+.switch label {
   display        : block;               /* ボックス要素に変更 */
-  box-sizing     : border-box;          /* 枠線を含んだサイズ */
-  text-align     : left;                /* 文字位置は中央     */
-  border         : 2px solid #0770FF;   /* 枠線               */
-  border-radius  : 8px;                 /* 角丸               */
-  line-height    : 1;                   /* 1行の高さ          */
-  height         : 30px;                /* ボタンの高さ       */
+  position       : absolute;            /* 親要素からの相対位置*/
+  top            : 0;                   /* 標準表示位置(上)   */
+  bottom         : 0;                   /* 標準表示位置(下)   */
+  left           : 0;                   /* 標準表示位置(左)   */
+  right          : 0;                   /* 標準表示位置(右)   */
+  text-align     : center;              /* 文字位置は中央     */
+  line-height    : 30px;                /* 1行の高さ(中央寄せ)*/
+  font-size      : 13pt;                /* 文字サイズ         */
+  font-weight    : bold;                /* 太字               */
+  border         : 2px solid #0770FF;      /* 枠線(一旦四方向)   */
 }
  
- /* === 移動BOX（標準） ===================================== */
-.sample2Area #sample2box {
-  display        :inline-block;
-  height         : 26px;                /* ボタンの高さ       */
-  width          : 50%;                 /* ボタンの高さ       */
-  background     : #0770FF;                /* 背景色             */
-  transition     : .3s;                 /* ゆっくり変化       */
+ /* === ON側のラジオボタンのラベル（標準） ================== */
+.switch #descBtn + label {
+  right          : 50%;                 /* 右端を中央に変更   */
+  border-radius  : 6px 0 0 6px;         /* 角丸(左側の上下)   */
+  background     : #FFF;                /* 背景               */
+  color          : #0770FF;                /* 文字色             */
+  border-right   : none;                /* 枠線の右側を消す   */
 }
  
- /* === ON側のチェックボックスの移動BOX（ONのとき） ========= */
-.sample2Area #sample2check:checked + label #sample2box {
-  transform      : translateX(100%);    /* BOXを右に移動      */
-  background     : #0770FF;             /* 背景色             */
+ /* === ON側のラジオボタンのラベル（ONのとき） ============== */
+.switch #descBtn:checked +label {
+                                        /* 背景グラデーション */
+  background     : #0770FF;
+  color          : #fff;                /* 文字色             */
+}
+ 
+ /* === OFF側のラジオボタンのラベル（標準） ================ */
+.switch #ascBtn + label {
+  left           : 50%;                 /* 左端を中央に変更   */
+  border-radius  : 0 6px 6px 0;         /* 角丸(右側の上下)   */
+  background     : #FFF;                /* 背景               */
+  color          : #0770FF;                /* 文字色             */
+  border-left    : none;                /* 枠線の左側を消す   */
+}
+ 
+ /* === OFF側のラジオボタンのラベル（OFFのとき） ============= */
+.switch #ascBtn:checked +label {
+                                        /* 背景グラデーション */
+  background     : #0770FF;
+  color          : #fff;                /* 文字色             */
 }
 
 </style>
