@@ -1,7 +1,7 @@
 .DS_Store
 dist/*
 !dist/index.html
-!dist/opg.jpg
+!dist/ogp.jpg
 node_modules/
 npm-debug.log
 yarn-error.log
