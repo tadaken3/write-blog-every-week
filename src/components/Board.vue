@@ -60,6 +60,7 @@ export default {
   text-align: center;
   font-size: 64px;
   font-weight: 800;
+  padding-bottom: 5px;
   color:#0770FF;
   background: linear-gradient(45deg, #0770FF 0%, #07F5FF 100%);
   -webkit-background-clip: text;//テキストでくり抜く
