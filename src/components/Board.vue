@@ -4,6 +4,7 @@
      <h1 class="logo">We Love Blog</h1>
      </transition>
     <div class="nav">
+        <img src="../assets/status.png" class="status-info" alt="update status">
         <p>登録ブログ数: {{ sorted.length }}件</p>
         <div class="switch" id="makeImg">
           <input type="radio" name="ascBtn" id="ascBtn" checked="" value="asc" v-model="order">
@@ -78,14 +79,21 @@ export default {
 }
 
 .nav {
-  width: 100%;
-  height: 100px;
+  width: 85%;
+  height: 150px;
+  margin: auto;
   position: relative;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
 }
 
+.nav .status-info {
+  width: 300px;
+  object-fit: contain;
+  margin-left: right;
+}
 .nav p {
-  text-align: center;
+  text-align: right;
 }
 
 //カードの中身
@@ -127,7 +135,7 @@ export default {
   position       : relative;            /* 親要素が基点       */
   width          : 300px;               /* ボタンの横幅       */
   height         : 30px;                /* ボタンの高さ       */
-  margin: auto;
+  margin-left: auto;
 }
  
  /* === ラジオボタン ======================================== */
