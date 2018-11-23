@@ -16,7 +16,15 @@
     <transition-group name="cards" class="container" appear>
       <card v-bind:blog="blog" v-for="blog in sorted" v-bind:key="blog.blogTitle"></card> 
     </transition-group>
-    <div class="credit"><a href="https://twitter.com/tadaken3">created by @tadaken3</a></div>
+    <div class="footer">
+      <div class="produced">Produced by</div>
+      <div class="my-blog">
+        <a href="https://tadaken3.hatenablog.jp/">
+        <img src="../assets/blog-logo.png" class="blog-logo" alt="タダケンのEnjoy Tech">
+        </a>
+      </div>
+      <div class="copy-light">©tadaken3. All rights reserved.</div>
+    </div>
   </div>
 </template>
 
@@ -53,8 +61,9 @@ export default {
 
 <style lang="scss" scoped>
 #board {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .logo {
@@ -125,69 +134,98 @@ export default {
   position: absolute;
 }
 
-.credit {
- margin: 10px;
- text-align: center;
-}
-
 /* === ボタンを表示するエリア ============================== */
 .switch {
-  position       : relative;            /* 親要素が基点       */
-  width          : 300px;               /* ボタンの横幅       */
-  height         : 30px;                /* ボタンの高さ       */
+  position: relative;
+  width: 300px;
+  height: 30px;
   margin-left: auto;
 }
  
  /* === ラジオボタン ======================================== */
 .switch input[type="radio"] {
-  display        : none;            /* チェックボックス非表示 */
+  display: none; 
 }
  
  /* === ラジオボタンのラベル（標準） ======================== */
 .switch label {
-  display        : block;               /* ボックス要素に変更 */
-  position       : absolute;            /* 親要素からの相対位置*/
-  top            : 0;                   /* 標準表示位置(上)   */
-  bottom         : 0;                   /* 標準表示位置(下)   */
-  left           : 0;                   /* 標準表示位置(左)   */
-  right          : 0;                   /* 標準表示位置(右)   */
-  text-align     : center;              /* 文字位置は中央     */
-  line-height    : 30px;                /* 1行の高さ(中央寄せ)*/
-  font-size      : 13pt;                /* 文字サイズ         */
-  font-weight    : bold;                /* 太字               */
-  border         : 2px solid #0770FF;      /* 枠線(一旦四方向)   */
+  display: block;    
+  position: absolute; 
+  top: 0; 
+  bottom: 0; 
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 30px;  
+  font-size: 13pt;
+  font-weight: bold;
+  border: 2px solid #0770FF;
 }
  
  /* === ON側のラジオボタンのラベル（標準） ================== */
 .switch #ascBtn + label {
-  right          : 50%;                 /* 右端を中央に変更   */
-  border-radius  : 6px 0 0 6px;         /* 角丸(左側の上下)   */
-  background     : #FFF;                /* 背景               */
-  color          : #0770FF;                /* 文字色             */
-  border-right   : none;                /* 枠線の右側を消す   */
+  right: 50%;
+  border-radius: 6px 0 0 6px;
+  background: #FFF;
+  color: #0770FF;
+  border-right: none;
 }
  
  /* === ON側のラジオボタンのラベル（ONのとき） ============== */
 .switch #ascBtn:checked +label {
-                                        /* 背景グラデーション */
-  background     : #0770FF;
-  color          : #fff;                /* 文字色             */
+  background: #0770FF;
+  color: #fff;
 }
  
  /* === OFF側のラジオボタンのラベル（標準） ================ */
 .switch #descBtn + label {
-  left           : 50%;                 /* 左端を中央に変更   */
-  border-radius  : 0 6px 6px 0;         /* 角丸(右側の上下)   */
-  background     : #FFF;                /* 背景               */
-  color          : #0770FF;                /* 文字色             */
-  border-left    : none;                /* 枠線の左側を消す   */
+  left: 50%;
+  border-radius: 0 6px 6px 0;
+  background: #FFF;
+  color: #0770FF;
+  border-left: none;
 }
  
  /* === OFF側のラジオボタンのラベル（OFFのとき） ============= */
 .switch #descBtn:checked +label {
-                                        /* 背景グラデーション */
-  background     : #0770FF;
-  color          : #fff;                /* 文字色             */
+  background: #0770FF;
+  color: #fff;  
+}
+
+.footer {
+    bottom: 0;
+    width: 85%;
+    margin: auto;
+}
+
+.produced {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.my-blog {
+  width:100px;
+  margin-left: auto; margin-right: auto;
+}
+
+.blog-logo {
+  width:100px;
+  object-fit: contain;
+}
+
+.blog-logo {
+  width:100px;
+  object-fit: contain;
+}
+
+.copy-light {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 20px 0;
+    font-size: 0.7rem;
+    margin-top: 20px; 
 }
 
 </style>
