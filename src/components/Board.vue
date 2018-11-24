@@ -3,6 +3,9 @@
     <transition name="logo" appear>
      <h1 class="logo">We Love Blog</h1>
      </transition>
+    <transition name="tagline" appear>
+     <p class="tagline">私たちはほぼ必ず週一でブログを更新します</p>
+     </transition>
     <div class="nav">
         <img src="../assets/status.png" class="status-info" alt="update status">
         <p>登録ブログ数: {{ sorted.length }}件</p>
@@ -70,7 +73,7 @@ export default {
   text-align: center;
   font-size: 64px;
   font-weight: 800;
-  padding-bottom: 5px;
+  margin-bottom: 8px;
   color:#0770FF;
   background: linear-gradient(45deg, #0770FF 0%, #07F5FF 100%);
   -webkit-background-clip: text;//テキストでくり抜く
@@ -86,6 +89,27 @@ export default {
   opacity: 0;
   transform: translateY(40px);
 }
+
+.tagline {
+  text-align: center;
+  font-size: 20px;
+  margin-top:3px;
+  font-weight: 600;
+  color:#0770FF;
+  background: linear-gradient(45deg, #0770FF 0%, #07F5FF 100%);
+  -webkit-background-clip: text;//テキストでくり抜く
+  -webkit-text-fill-color: transparent;
+}
+
+
+.tagline-enter-active {
+  transition: all 3s;
+}
+.tagline-enter {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
 
 .nav {
   width: 85%;
